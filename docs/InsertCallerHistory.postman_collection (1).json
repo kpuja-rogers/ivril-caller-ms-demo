@@ -1,0 +1,193 @@
+{
+	"info": {
+		"_postman_id": "c62e8695-4d2e-4c77-afe5-269955b5c1bd",
+		"name": "InsertCallerHistory",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "204_Dev_AKS_Success_insertCallerHistory",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-CDR",
+						"value": "24322",
+						"type": "text"
+					},
+					{
+						"key": "X-TransactionId",
+						"value": "18726355473892",
+						"type": "text"
+					},
+					{
+						"key": "X-ClientSystem",
+						"value": "IVR",
+						"type": "text"
+					},
+					{
+						"key": "X-Brand",
+						"value": "FIDO",
+						"type": "text"
+					},
+					{
+						"key": "X-TransactionDateTime",
+						"value": "12",
+						"type": "text"
+					},
+					{
+						"key": "X-IVRSubscriptionKey",
+						"value": "82552da80c5c45b0abd8b972a795803a",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"connectionId\": \"14379\",\r\n    \"callDateTime\": \"1411143681747\",\r\n    \"dnis\": \"9906117607\",\r\n    \"ani\": \"1234567890\",\r\n    \"itn\": \"7389285414\",\r\n    \"ecid\": \"423237971\",\r\n    \"accountNumber\": \"12345678912\",\r\n    \"accountProfileType\": \"NonMaestroOnly\",\r\n    \"cpdFlag\": \"ECARE\",\r\n    \"lastIntent\": {\r\n        \"intent1\": \"FC_MMMXDHSI_OCCPTP_0919\",\r\n        \"intent2\": \"FC_MMMXDHSI_OAGTCARECNCL_1024\",\r\n        \"intent3\": \"CANCEL_CARE_FDO_MAGTMXDHSI_OTRF\",\r\n        \"intent4\": \"CANCEL_CARE_FDO_MAGTMXDHSI_OTRF\",\r\n        \"intent5\": \"CANCEL_CARE_FDO_MAGTMXDHSI_OTRF\"\r\n    },\r\n    \"selfServe\": [\r\n        {\r\n            \"selfServeAttemted\": \"ANI_SelfServe_Intercept\",\r\n            \"selfServeCompleted\": \"Y\"\r\n        },\r\n        {\r\n            \"selfServeAttemted\": \"Payment_Arrangement\",\r\n            \"selfServeCompleted\": \"N\"\r\n        }\r\n    ],\r\n    \"callEndState\": \"Transfer\",\r\n    \"callEndStatus\": \"Voluntary Transfer\",\r\n    \"virtualQueue\": \"FDO_GENINQ_ACT_EN\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://dev01-ivril-caller-exp-api.ivrilnpe.app.rogers.com/callers/caller-history",
+					"protocol": "https",
+					"host": [
+						"dev01-ivril-caller-exp-api",
+						"ivrilnpe",
+						"app",
+						"rogers",
+						"com"
+					],
+					"path": [
+						"callers",
+						"caller-history"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "204_Local_Success_insertCallerHistory",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-CDR",
+						"value": "24322",
+						"type": "text"
+					},
+					{
+						"key": "X-TransactionId",
+						"value": "18726355473892",
+						"type": "text"
+					},
+					{
+						"key": "X-ClientSystem",
+						"value": "IVR",
+						"type": "text"
+					},
+					{
+						"key": "X-Brand",
+						"value": "FIDO",
+						"type": "text"
+					},
+					{
+						"key": "X-TransactionDateTime",
+						"value": "12",
+						"type": "text"
+					},
+					{
+						"key": "X-IVRSubscriptionKey",
+						"value": "82552da80c5c45b0abd8b972a795803a",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"connectionId\": \"143\",\r\n    \"callDateTime\": \"1411143681747\",\r\n    \"dnis\": \"9906117607\",\r\n    \"ani\": \"1234567890\",\r\n    \"itn\": \"7389285414\",\r\n    \"ecid\": \"423237971\",\r\n    \"accountNumber\": \"12345678912\",\r\n    \"accountProfileType\": \"NonMaestroOnly\",\r\n    \"cpdFlag\": \"ECARE\",\r\n    \"lastIntent\": {\r\n        \"intent1\": \"FC_MMMXDHSI_OCCPTP_0919\",\r\n        \"intent2\": \"FC_MMMXDHSI_OAGTCARECNCL_1024\",\r\n        \"intent3\": \"CANCEL_CARE_FDO_MAGTMXDHSI_OTRF\",\r\n        \"intent4\": \"CANCEL_CARE_FDO_MAGTMXDHSI_OTRF\",\r\n        \"intent5\": \"CANCEL_CARE_FDO_MAGTMXDHSI_OTRF\"\r\n    },\r\n    \"selfServe\": [\r\n        {\r\n            \"selfServeAttemted\": \"ANI_SelfServe_Intercept\",\r\n            \"selfServeCompleted\": \"Y\"\r\n        },\r\n        {\r\n            \"selfServeAttemted\": \"Payment_Arrangement\",\r\n            \"selfServeCompleted\": \"N\"\r\n        }\r\n    ],\r\n    \"callEndState\": \"Transfer\",\r\n    \"callEndStatus\": \"Voluntary Transfer\",\r\n    \"virtualQueue\": \"FDO_GENINQ_ACT_EN\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http:localhost:8080/callers/caller-history",
+					"host": [
+						"http:localhost"
+					],
+					"port": "8080",
+					"path": [
+						"callers",
+						"caller-history"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Dev_APIM_Success_insertCallerHistory",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-CDR",
+						"value": "24322",
+						"type": "text"
+					},
+					{
+						"key": "X-TransactionId",
+						"value": "18726355473892",
+						"type": "text"
+					},
+					{
+						"key": "X-ClientSystem",
+						"value": "IVR",
+						"type": "text"
+					},
+					{
+						"key": "X-Brand",
+						"value": "FIDO",
+						"type": "text"
+					},
+					{
+						"key": "X-TransactionDateTime",
+						"value": "12",
+						"type": "text"
+					},
+					{
+						"key": "X-IVRSubscriptionKey",
+						"value": "b3ceee33ada84df9afa696b04cffbbc3",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"connectionId\": \"9033\",\r\n    \"callDateTime\": \"2018-04-25T11:21:00Z\",\r\n    \"dnis\": \"9906117607\",\r\n    \"ani\": \"1234567890\",\r\n    \"itn\": \"7389285414\",\r\n    \"ecid\": \"423237971\",\r\n    \"accountNumber\": \"12345678912\",\r\n    \"accountProfileType\": \"NonMaestroOnly\",\r\n    \"cpdFlag\": \"ECARE\",\r\n    \"lastIntent\": {\r\n        \"intent1\": \"FC_MMMXDHSI_OCCPTP_0919\",\r\n        \"intent2\": \"FC_MMMXDHSI_OAGTCARECNCL_1024\",\r\n        \"intent3\": \"CANCEL_CARE_FDO_MAGTMXDHSI_OTRF\",\r\n        \"intent4\": \"CANCEL_CARE_FDO_MAGTMXDHSI_OTRF\",\r\n        \"intent5\": \"CANCEL_CARE_FDO_MAGTMXDHSI_OTRF\"\r\n    },\r\n    \"selfServe\": [\r\n        {\r\n            \"selfServeAttemted\": \"ANI_SelfServe_Intercept\"\r\n           \r\n        }\r\n    ],\r\n    \"callEndState\": \"Transfer\",\r\n    \"callEndStatus\": \"Voluntary Transfer\",\r\n    \"virtualQueue\": \"FDO_GENINQ_ACT_EN\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://ivrilnpeapi.rogers.com/qa01-ivril-callerexp/callers/caller-history",
+					"protocol": "https",
+					"host": [
+						"ivrilnpeapi",
+						"rogers",
+						"com"
+					],
+					"path": [
+						"qa01-ivril-callerexp",
+						"callers",
+						"caller-history"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -1,0 +1,730 @@
+{
+	"info": {
+		"_postman_id": "88356e3a-1df2-4102-bb3e-4df79f9a4e15",
+		"name": "GetCallerHistory",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "200 Passing Y,Y, Phone",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-CDR",
+						"value": "24322",
+						"type": "text"
+					},
+					{
+						"key": "X-IVRSubscriptionKey",
+						"value": "82552da80c5c45b0abd8b972a795803a",
+						"type": "text"
+					},
+					{
+						"key": "X-TransactionDateTime",
+						"value": "12",
+						"type": "text"
+					},
+					{
+						"key": "X-ClientSystem",
+						"value": "IVR",
+						"type": "text"
+					},
+					{
+						"key": "X-Brand",
+						"value": "FIDO",
+						"type": "text"
+					},
+					{
+						"key": "X-TransactionId",
+						"value": "18726355473892",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://dev01-ivril-caller-exp-api.ivrilnpe.app.rogers.com/caller/caller-history?callHistoryEnable=Y&repeatHistoryEnable=Y&customerIdType=Phone&customerIdNumber=4168358952",
+					"protocol": "http",
+					"host": [
+						"dev01-ivril-caller-exp-api",
+						"ivrilnpe",
+						"app",
+						"rogers",
+						"com"
+					],
+					"path": [
+						"caller",
+						"caller-history"
+					],
+					"query": [
+						{
+							"key": "callHistoryEnable",
+							"value": "Y"
+						},
+						{
+							"key": "repeatHistoryEnable",
+							"value": "Y"
+						},
+						{
+							"key": "customerIdType",
+							"value": "Phone"
+						},
+						{
+							"key": "customerIdNumber",
+							"value": "4168358952"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "200 Passing Y,Y,Account",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-CDR",
+						"value": "24322",
+						"type": "text"
+					},
+					{
+						"key": "X-IVRSubscriptionKey",
+						"value": "82552da80c5c45b0abd8b972a795803a",
+						"type": "text"
+					},
+					{
+						"key": "X-TransactionDateTime",
+						"value": "12",
+						"type": "text"
+					},
+					{
+						"key": "X-ClientSystem",
+						"value": "IVR",
+						"type": "text"
+					},
+					{
+						"key": "X-Brand",
+						"value": "FIDO",
+						"type": "text"
+					},
+					{
+						"key": "X-TransactionId",
+						"value": "18726355473892",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://dev01-ivril-caller-exp-api.ivrilnpe.app.rogers.com/caller/caller-history?callHistoryEnable=Y&repeatHistoryEnable=Y&customerIdType=Account&customerIdNumber=810869024",
+					"protocol": "http",
+					"host": [
+						"dev01-ivril-caller-exp-api",
+						"ivrilnpe",
+						"app",
+						"rogers",
+						"com"
+					],
+					"path": [
+						"caller",
+						"caller-history"
+					],
+					"query": [
+						{
+							"key": "callHistoryEnable",
+							"value": "Y"
+						},
+						{
+							"key": "repeatHistoryEnable",
+							"value": "Y"
+						},
+						{
+							"key": "customerIdType",
+							"value": "Account"
+						},
+						{
+							"key": "customerIdNumber",
+							"value": "810869024"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "200 Passing Y,Y,Account Copy",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-CDR",
+						"value": "24322",
+						"type": "text"
+					},
+					{
+						"key": "X-IVRSubscriptionKey",
+						"value": "b3ceee33ada84df9afa696b04cffbbc3",
+						"type": "text"
+					},
+					{
+						"key": "X-TransactionDateTime",
+						"value": "12",
+						"type": "text"
+					},
+					{
+						"key": "X-ClientSystem",
+						"value": "IVR",
+						"type": "text"
+					},
+					{
+						"key": "X-Brand",
+						"value": "FIDO",
+						"type": "text"
+					},
+					{
+						"key": "X-TransactionId",
+						"value": "18726355473892",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://ivrilnpeapi.rogers.com/qa01-ivril-callerexp/callers/caller-history?callHistoryEnable=Y&repeatHistoryEnable=Y&customerIdType=Account&customerIdNumber=810869024",
+					"protocol": "https",
+					"host": [
+						"ivrilnpeapi",
+						"rogers",
+						"com"
+					],
+					"path": [
+						"qa01-ivril-callerexp",
+						"callers",
+						"caller-history"
+					],
+					"query": [
+						{
+							"key": "callHistoryEnable",
+							"value": "Y"
+						},
+						{
+							"key": "repeatHistoryEnable",
+							"value": "Y"
+						},
+						{
+							"key": "customerIdType",
+							"value": "Account"
+						},
+						{
+							"key": "customerIdNumber",
+							"value": "810869024"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "400 If Account Number Size exceeds",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-CDR",
+						"value": "24322",
+						"type": "text"
+					},
+					{
+						"key": "X-TransactionId",
+						"value": "18726355473892",
+						"type": "text"
+					},
+					{
+						"key": "X-ClientSystem",
+						"value": "IVR",
+						"type": "text"
+					},
+					{
+						"key": "X-Brand",
+						"value": "FIDO",
+						"type": "text"
+					},
+					{
+						"key": "X-TransactionDateTime",
+						"value": "12",
+						"type": "text"
+					},
+					{
+						"key": "X-IVRSubscriptionKey",
+						"value": "82552da80c5c45b0abd8b972a795803a",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://dev01-ivril-caller-exp-api.ivrilnpe.app.rogers.com/caller/caller-history?callHistoryEnable=Y&repeatHistoryEnable=Y&customerIdType=Account&customerIdNumber=8108690248987",
+					"protocol": "http",
+					"host": [
+						"dev01-ivril-caller-exp-api",
+						"ivrilnpe",
+						"app",
+						"rogers",
+						"com"
+					],
+					"path": [
+						"caller",
+						"caller-history"
+					],
+					"query": [
+						{
+							"key": "callHistoryEnable",
+							"value": "Y"
+						},
+						{
+							"key": "repeatHistoryEnable",
+							"value": "Y"
+						},
+						{
+							"key": "customerIdType",
+							"value": "Account"
+						},
+						{
+							"key": "customerIdNumber",
+							"value": "8108690248987"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "400 If Phone Number Size does not match",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-CDR",
+						"value": "24322",
+						"type": "text"
+					},
+					{
+						"key": "X-TransactionId",
+						"value": "18726355473892",
+						"type": "text"
+					},
+					{
+						"key": "X-ClientSystem",
+						"value": "IVR",
+						"type": "text"
+					},
+					{
+						"key": "X-Brand",
+						"value": "FIDO",
+						"type": "text"
+					},
+					{
+						"key": "X-TransactionDateTime",
+						"value": "12",
+						"type": "text"
+					},
+					{
+						"key": "X-IVRSubscriptionKey",
+						"value": "82552da80c5c45b0abd8b972a795803a",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://dev01-ivril-caller-exp-api.ivrilnpe.app.rogers.com/caller/caller-history?callHistoryEnable=Y&repeatHistoryEnable=Y&customerIdType=Phone&customerIdNumber=416835895",
+					"protocol": "http",
+					"host": [
+						"dev01-ivril-caller-exp-api",
+						"ivrilnpe",
+						"app",
+						"rogers",
+						"com"
+					],
+					"path": [
+						"caller",
+						"caller-history"
+					],
+					"query": [
+						{
+							"key": "callHistoryEnable",
+							"value": "Y"
+						},
+						{
+							"key": "repeatHistoryEnable",
+							"value": "Y"
+						},
+						{
+							"key": "customerIdType",
+							"value": "Phone"
+						},
+						{
+							"key": "customerIdNumber",
+							"value": "416835895"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "400 If customerIdNumber pattern does not match",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-CDR",
+						"value": "24322",
+						"type": "text"
+					},
+					{
+						"key": "X-TransactionId",
+						"value": "18726355473892",
+						"type": "text"
+					},
+					{
+						"key": "X-ClientSystem",
+						"value": "IVR",
+						"type": "text"
+					},
+					{
+						"key": "X-Brand",
+						"value": "FIDO",
+						"type": "text"
+					},
+					{
+						"key": "X-TransactionDateTime",
+						"value": "12",
+						"type": "text"
+					},
+					{
+						"key": "X-IVRSubscriptionKey",
+						"value": "82552da80c5c45b0abd8b972a795803a",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://dev01-ivril-caller-exp-api.ivrilnpe.app.rogers.com/caller/caller-history?callHistoryEnable=Y&repeatHistoryEnable=Y&customerIdType=Account&customerIdNumber=abc",
+					"protocol": "http",
+					"host": [
+						"dev01-ivril-caller-exp-api",
+						"ivrilnpe",
+						"app",
+						"rogers",
+						"com"
+					],
+					"path": [
+						"caller",
+						"caller-history"
+					],
+					"query": [
+						{
+							"key": "callHistoryEnable",
+							"value": "Y"
+						},
+						{
+							"key": "repeatHistoryEnable",
+							"value": "Y"
+						},
+						{
+							"key": "customerIdType",
+							"value": "Account"
+						},
+						{
+							"key": "customerIdNumber",
+							"value": "abc"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "400 If callHistoryEnable and repeatHistoryenable are  other than Enum",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-CDR",
+						"value": "24322",
+						"type": "text"
+					},
+					{
+						"key": "X-TransactionId",
+						"value": "18726355473892",
+						"type": "text"
+					},
+					{
+						"key": "X-ClientSystem",
+						"value": "IVR",
+						"type": "text"
+					},
+					{
+						"key": "X-Brand",
+						"value": "FIDO",
+						"type": "text"
+					},
+					{
+						"key": "X-TransactionDateTime",
+						"value": "12",
+						"type": "text"
+					},
+					{
+						"key": "X-IVRSubscriptionKey",
+						"value": "82552da80c5c45b0abd8b972a795803a",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://dev01-ivril-caller-exp-api.ivrilnpe.app.rogers.com/caller/caller-history?callHistoryEnable=Y&repeatHistoryEnable=Yr&customerIdType=Phone&customerIdNumber=4168358952",
+					"protocol": "http",
+					"host": [
+						"dev01-ivril-caller-exp-api",
+						"ivrilnpe",
+						"app",
+						"rogers",
+						"com"
+					],
+					"path": [
+						"caller",
+						"caller-history"
+					],
+					"query": [
+						{
+							"key": "callHistoryEnable",
+							"value": "Y"
+						},
+						{
+							"key": "repeatHistoryEnable",
+							"value": "Yr"
+						},
+						{
+							"key": "customerIdType",
+							"value": "Phone"
+						},
+						{
+							"key": "customerIdNumber",
+							"value": "4168358952"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "400 If brand name differs",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-CDR",
+						"value": "24322",
+						"type": "text"
+					},
+					{
+						"key": "X-TransactionId",
+						"value": "18726355473892",
+						"type": "text"
+					},
+					{
+						"key": "X-ClientSystem",
+						"value": "IVR",
+						"type": "text"
+					},
+					{
+						"key": "X-Brand",
+						"value": "FIDOr",
+						"type": "text"
+					},
+					{
+						"key": "X-TransactionDateTime",
+						"value": "12",
+						"type": "text"
+					},
+					{
+						"key": "X-IVRSubscriptionKey",
+						"value": "82552da80c5c45b0abd8b972a795803a",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "http://dev01-ivril-caller-exp-api.ivrilnpe.app.rogers.com/caller/caller-history?callHistoryEnable=Y&repeatHistoryEnable=Y&customerIdType=Account&customerIdNumber=810869024",
+					"protocol": "http",
+					"host": [
+						"dev01-ivril-caller-exp-api",
+						"ivrilnpe",
+						"app",
+						"rogers",
+						"com"
+					],
+					"path": [
+						"caller",
+						"caller-history"
+					],
+					"query": [
+						{
+							"key": "callHistoryEnable",
+							"value": "Y"
+						},
+						{
+							"key": "repeatHistoryEnable",
+							"value": "Y"
+						},
+						{
+							"key": "customerIdType",
+							"value": "Account"
+						},
+						{
+							"key": "customerIdNumber",
+							"value": "810869024"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "401 UnAuthorised",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-CDR",
+						"value": "24322",
+						"type": "text"
+					},
+					{
+						"key": "X-TransactionId",
+						"value": "18726355473892",
+						"type": "text"
+					},
+					{
+						"key": "X-ClientSystem",
+						"value": "IVR",
+						"type": "text"
+					},
+					{
+						"key": "X-Brand",
+						"value": "FIDO",
+						"type": "text"
+					},
+					{
+						"key": "X-TransactionDateTime",
+						"value": "12",
+						"type": "text"
+					},
+					{
+						"key": "X-IVRSubscriptionKey",
+						"value": "82552da80c5c45b0abd8b972a795803a",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "http://dev01-ivril-caller-exp-api.ivrilnpe.app.rogers.com/caller/caller-history?callHistoryEnable=Y&repeatHistoryEnable=Y&customerIdType=Account&customerIdNumber=810869024",
+					"protocol": "http",
+					"host": [
+						"dev01-ivril-caller-exp-api",
+						"ivrilnpe",
+						"app",
+						"rogers",
+						"com"
+					],
+					"path": [
+						"caller",
+						"caller-history"
+					],
+					"query": [
+						{
+							"key": "callHistoryEnable",
+							"value": "Y"
+						},
+						{
+							"key": "repeatHistoryEnable",
+							"value": "Y"
+						},
+						{
+							"key": "customerIdType",
+							"value": "Account"
+						},
+						{
+							"key": "customerIdNumber",
+							"value": "810869024"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "400 If customerIdType is other then Account/Phone",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-CDR",
+						"value": "24322",
+						"type": "text"
+					},
+					{
+						"key": "X-IVRSubscriptionKey",
+						"value": "82552da80c5c45b0abd8b972a795803a",
+						"type": "text"
+					},
+					{
+						"key": "X-TransactionDateTime",
+						"value": "12",
+						"type": "text"
+					},
+					{
+						"key": "X-ClientSystem",
+						"value": "IVR",
+						"type": "text"
+					},
+					{
+						"key": "X-Brand",
+						"value": "FIDO",
+						"type": "text"
+					},
+					{
+						"key": "X-TransactionId",
+						"value": "18726355473892",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://dev01-ivril-caller-exp-api.ivrilnpe.app.rogers.com/caller/caller-history?callHistoryEnable=Y&repeatHistoryEnable=Y&customerIdType=Phoneth&customerIdNumber=4168358952",
+					"protocol": "http",
+					"host": [
+						"dev01-ivril-caller-exp-api",
+						"ivrilnpe",
+						"app",
+						"rogers",
+						"com"
+					],
+					"path": [
+						"caller",
+						"caller-history"
+					],
+					"query": [
+						{
+							"key": "callHistoryEnable",
+							"value": "Y"
+						},
+						{
+							"key": "repeatHistoryEnable",
+							"value": "Y"
+						},
+						{
+							"key": "customerIdType",
+							"value": "Phoneth"
+						},
+						{
+							"key": "customerIdNumber",
+							"value": "4168358952"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

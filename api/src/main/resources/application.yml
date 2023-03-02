@@ -1,0 +1,21 @@
+---
+spring:
+  application:
+    name: ivril-caller-ms
+
+application:
+  title: ivril-caller-ms
+  version: v1
+  buildversion: ${DT_RELEASE_BUILD_VERSION:UNKNOWN}
+  description: Caller API allows to get Caller history statIstics or insert a record in Call History table.
+  encryption:
+    iv: BICyeljLYNky1XaLz7iGLg==
+    key: BICyeljLYNky1XaLz7iGLg==
+
+env:
+  profile: "local"
+
+
+security:
+  basic:
+    enabled: false

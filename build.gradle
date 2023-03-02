@@ -1,0 +1,80 @@
+config {
+    info {
+        description = 'Core Service: <replace-with-descriptive-name>'
+        inceptionYear = '2023'
+    }
+}
+
+// Open APi Generator Config
+def specPath = "$rootDir/docs/ivr-caller-exp-api-swagger.yaml"
+def outPath = "$rootDir/build/api"
+def pkgName = "com.rogers.ivril.callerhistory.models"
+
+task validateSpec(type: org.openapitools.generator.gradle.plugin.tasks.ValidateTask) {
+    inputSpec = "$specPath"
+    recommend = true
+}
+
+task generateModels(type: org.openapitools.generator.gradle.plugin.tasks.GenerateTask) {
+    globalProperties = [
+            skipOperationExample: "true",
+            modelDocs           : "false",
+            apis                : "false",
+            models              : "",
+            useLombok           : "true",
+    ]
+    generatorName = "spring"
+    inputSpec = specPath
+    outputDir = outPath
+    modelPackage = pkgName
+    validateSpec = true
+    generateModelDocumentation = false
+    typeMappings = [
+            Double   : "double",
+            Float    : "float",
+            Integer  : "int",
+            Boolean  : "boolean",
+            Character: "char",
+    ]
+    configOptions = [
+            "java8"                : "true",
+            dateLibrary            : "java11",
+            serializableModel      : "true",
+            hideGenerationTimestamp: "true",
+            useLombok              : "true",
+            openApiNullable        : "false"
+    ]
+    additionalProperties = [
+            useLombok                     : "true",
+            openApiNullable               : "false",
+            additionalModelTypeAnnotations: "@Data @Builder @NoArgsConstructor @AllArgsConstructor"
+    ]
+    templateDir = "$rootDir/docs/templates".toString()
+}
+
+task copyGeneratedModels(type: Copy) {
+    from("$rootDir/build/api/src/main/java/com/rogers/ivril/<replace-with-service-name>/models")
+    into("$rootDir/api/src/main/java/com/rogers/ivril/<replace-with-service-name>/models")
+}
+
+task generateSpec(type: GradleBuild) {
+    tasks = ['validateSpec', 'clean', 'generateModels', 'copyGeneratedModels']
+}
+
+
+
+def coverage_exclude_packages = ["test", "config", "models", "exception", "common", "constants", "repository"].collect { "**/com/rogers/ivril/**/" + it + "/**" }
+def coverage_exclude_classes = ["Application"].collect { "**/com/rogers/ivril/**/" + it + ".java" }
+def sonar_coverage_exclude = coverage_exclude_packages.join(',') + "," + coverage_exclude_classes.join(',')
+
+def analysis_exclude_packages = ["models", "exception"].collect { "**/com/rogers/ivril/**/" + it + "/**" }
+def sonar_analysis_exclude = analysis_exclude_packages.join(',')
+
+sonarqube {
+    properties {
+        property 'sonar.coverage.exclusions', sonar_coverage_exclude
+        property 'sonar.exclusions', sonar_analysis_exclude
+    }
+}
+
+

@@ -1,0 +1,9 @@
+dependencies {
+    compile group: "io.swagger", name: "swagger-annotations", version: "1.6.2"
+    implementation 'com.rogers.ivril:commonlibrary:1.1.5'
+
+}
+
+springBoot {
+    buildInfo()
+}

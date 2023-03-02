@@ -1,0 +1,578 @@
+openapi: 3.0.0
+info:
+  title: IVR Caller API
+  description: "Caller API allows to get Caller history statIstics or \ninsert a record\
+    \ in Call History CPD2 table\n"
+  contact:
+    email: ivrintegrationlayer@rci.rogers.com
+  version: 1.0.3
+  x-api-name: ivr-caller-exp-api
+servers:
+  - url: https://swaggerhub.rogers.com/virts/GalaF/ivr-caller-exp-api/1.0.3
+    description: SwaggerHub API Auto Mocking
+tags:
+  - name: caller
+    description: Caller API operations
+paths:
+  /callers/caller-history:
+    get:
+      tags:
+        - caller
+      description: Gets caller history details from Call History table in CPD2 DB
+      operationId: getCallerHistory
+      parameters:
+        - name: X-CDR
+          in: header
+          required: true
+          schema:
+            type: string
+          example: "111222333444"
+        - name: X-TransactionId
+          in: header
+          required: true
+          schema:
+            type: string
+          example: "1872635547389"
+        - name: X-TransactionDateTime
+          in: header
+          required: true
+          schema:
+            type: string
+            format: date-time
+          example: 2021-06-23T16:05:30.094629
+        - name: X-IVRSubscriptionKey
+          in: header
+          description: API Security key
+          required: true
+          schema:
+            type: string
+          example: 75tysf1c-x469-428s-a80f-o3b97aac53qw
+        - name: X-ClientSystem
+          in: header
+          description: Identifies the client application invoking API, such as IVR FE,
+            DataSync, VA etc.
+          required: true
+          schema:
+            type: string
+          example: IVR
+        - name: X-Brand
+          in: header
+          description: Identifies the Rogers Brand
+          required: true
+          schema:
+            $ref: '#/components/schemas/Brand'
+        - name: callHistoryEnable
+          in: query
+          description: If Y is passed, then Call History will be included in the response
+          required: false
+          style: form
+          explode: true
+          schema:
+            $ref: '#/components/schemas/YNIndicator'
+        - name: repeatHistoryEnable
+          in: query
+          description: If Y is passed, Repeat Caller Profile will be included in the
+            response
+          required: false
+          style: form
+          explode: true
+          schema:
+            $ref: '#/components/schemas/YNIndicator'
+        - name: customerIdType
+          in: query
+          description: 'One of 2 values:  Account or Phone'
+          required: true
+          style: form
+          explode: true
+          schema:
+            type: string
+            enum:
+              - Account
+              - Phone
+        - name: customerIdNumber
+          in: query
+          description: either customer Account number or Phone number
+          required: true
+          style: form
+          explode: true
+          schema:
+            $ref: '#/components/schemas/CallerIdentifier'
+      responses:
+        "200":
+          description: Repeat Caller profile and/or Call Counts returned
+          headers:
+            X-CDR:
+              $ref: '#/components/headers/X-CDR'
+            X-TransactionId:
+              $ref: '#/components/headers/X-TransactionId'
+            X-Duration:
+              $ref: '#/components/headers/X-Duration'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CallHistoryProfile'
+              examples:
+                exCallHist:
+                  $ref: '#/components/examples/CallHistoryExample'
+        "400":
+          description: Bad Request, refer to Error content for more details
+          headers:
+            X-CDR:
+              $ref: '#/components/headers/X-CDR'
+            X-TransactionId:
+              $ref: '#/components/headers/X-TransactionId'
+            X-Duration:
+              $ref: '#/components/headers/X-Duration'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        "401":
+          description: Unauthorized. Invalid or missing subscription key.
+          headers:
+            X-CDR:
+              $ref: '#/components/headers/X-CDR'
+            X-TransactionId:
+              $ref: '#/components/headers/X-TransactionId'
+            X-Duration:
+              $ref: '#/components/headers/X-Duration'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        "500":
+          description: Internal Server Error - API malfunction
+          headers:
+            X-CDR:
+              $ref: '#/components/headers/X-CDR'
+            X-TransactionId:
+              $ref: '#/components/headers/X-TransactionId'
+            X-Duration:
+              $ref: '#/components/headers/X-Duration'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    post:
+      tags:
+        - caller
+      description: inserts a call history record in CallHistory table
+      operationId: insertCallHistory
+      parameters:
+        - name: X-CDR
+          in: header
+          required: true
+          schema:
+            type: string
+          example: "111222333444"
+        - name: X-TransactionId
+          in: header
+          required: true
+          schema:
+            type: string
+          example: "1872635547389"
+        - name: X-TransactionDateTime
+          in: header
+          required: true
+          schema:
+            type: string
+            format: date-time
+          example: 2021-06-23T16:05:30.094629
+        - name: X-IVRSubscriptionKey
+          in: header
+          description: API Security key
+          required: true
+          schema:
+            type: string
+          example: 75tysf1c-x469-428s-a80f-o3b97aac53qw
+        - name: X-ClientSystem
+          in: header
+          description: Identifies the client application invoking API, such as IVR FE,
+            DataSync, VA etc.
+          required: true
+          schema:
+            type: string
+          example: IVR
+        - name: X-Brand
+          in: header
+          description: Identifies the Rogers Brand
+          required: true
+          schema:
+            $ref: '#/components/schemas/Brand'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CallHistoryRecord'
+            examples:
+              exCallHistRec:
+                $ref: '#/components/examples/CallHistoryRecordExample'
+        required: true
+      responses:
+        "204":
+          description: OK (No Content) A record was inserted into Call_History table
+          headers:
+            X-CDR:
+              $ref: '#/components/headers/X-CDR'
+            X-TransactionId:
+              $ref: '#/components/headers/X-TransactionId'
+            X-Duration:
+              $ref: '#/components/headers/X-Duration'
+        "400":
+          description: Bad Request, refer to Error content for more details
+          headers:
+            X-CDR:
+              $ref: '#/components/headers/X-CDR'
+            X-TransactionId:
+              $ref: '#/components/headers/X-TransactionId'
+            X-Duration:
+              $ref: '#/components/headers/X-Duration'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        "401":
+          description: Unauthorized. Invalid or missing subscription key.
+          headers:
+            X-CDR:
+              $ref: '#/components/headers/X-CDR'
+            X-TransactionId:
+              $ref: '#/components/headers/X-TransactionId'
+            X-Duration:
+              $ref: '#/components/headers/X-Duration'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        "500":
+          description: Internal Server Error - API malfunction
+          headers:
+            X-CDR:
+              $ref: '#/components/headers/X-CDR'
+            X-TransactionId:
+              $ref: '#/components/headers/X-TransactionId'
+            X-Duration:
+              $ref: '#/components/headers/X-Duration'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  schemas:
+    CallerIdentifier:
+      maxLength: 12
+      minLength: 9
+      pattern: ^[0-9]+$
+      type: string
+      description: 10-digits phone number or 9 to 12 digits account number
+      example: "267289983"
+    Intent:
+      type: object
+      properties:
+        intent1:
+          type: string
+        intent2:
+          type: string
+        intent3:
+          type: string
+        intent4:
+          type: string
+        intent5:
+          type: string
+    SelfServe:
+      required:
+        - selfServeAttemted
+      type: object
+      properties:
+        selfServeAttemted:
+          type: string
+        selfServeCompleted:
+          type: string
+    TotalCalls:
+      required:
+        - last1Day
+        - last30Days
+        - last3Days
+        - last7Days
+        - last90Days
+      type: object
+      properties:
+        last1Day:
+          type: integer
+        last3Days:
+          type: integer
+        last7Days:
+          type: integer
+        last30Days:
+          type: integer
+        last90Days:
+          type: integer
+    IntentLast30DaysCalls:
+      required:
+        - callsLast30Days
+        - intent1
+      type: object
+      properties:
+        intent1:
+          type: string
+        callsLast30Days:
+          type: integer
+    CallCounts:
+      required:
+        - totalCalls
+      type: object
+      properties:
+        totalCalls:
+          $ref: '#/components/schemas/TotalCalls'
+        intentCalls:
+          type: array
+          items:
+            $ref: '#/components/schemas/IntentLast30DaysCalls'
+      example:
+        totalCalls:
+          last1Day: 5
+          last3Days: 2
+          last7Days: 14
+          last30Days: 17
+          last90Days: 19
+        intentCalls:
+          - intent1: VA_DGTLHUB-CONTINUE_FC-WIR_072020
+            callsLast30Days: 14
+          - intent1: WIRUNBILLED-AIR_SelfServe
+            callsLast30Days: 2
+    RepeatCaller:
+      required:
+        - callsThreshold
+        - menuID
+        - numberOfDays
+        - repeatCallerInd
+        - totalCalls
+      type: object
+      properties:
+        menuID:
+          type: string
+        numberOfDays:
+          minimum: 0
+          type: integer
+        callsThreshold:
+          minimum: 0
+          type: integer
+        totalCalls:
+          minimum: 0
+          type: integer
+        repeatCallerInd:
+          $ref: '#/components/schemas/YNIndicator'
+      example:
+        menuID: M_480
+        numberOfDays: 7
+        callsThreshold: 1
+        totalCalls: 3
+        repeatCallerInd: "Y"
+    CallHistoryRecord:
+      required:
+        - callDateTime
+        - connectionId
+      type: object
+      properties:
+        connectionId:
+          type: string
+        callDateTime:
+          type: string
+          description: Date format UTC - YYYY-MM-DDTHH:MM:SSZ
+          format: date-time
+        dnis:
+          type: string
+        ani:
+          $ref: '#/components/schemas/PhoneNumber'
+        itn:
+          $ref: '#/components/schemas/PhoneNumber'
+        ecid:
+          type: string
+        accountNumber:
+          $ref: '#/components/schemas/AccountNumber'
+        accountProfileType:
+          type: string
+        cpdFlag:
+          type: string
+        lastIntent:
+          $ref: '#/components/schemas/Intent'
+        selfServe:
+          maxItems: 2
+          minItems: 1
+          type: array
+          items:
+            $ref: '#/components/schemas/SelfServe'
+        callEndState:
+          type: string
+        callEndStatus:
+          type: string
+        virtualQueue:
+          type: string
+      example:
+        connectionId: 00870309eb9a2717
+        callDateTime: 2020-08-07T20:08:22Z
+        dnis: "9906117601"
+        ani: "4036081943"
+        itn: "4053788290"
+        ecid: "423237971"
+        accountNumber: "787280493"
+        accountProfileType: NonMaestroOnly
+        cpdFlag: ECARE
+        lastIntent:
+          intent1: FC_MMMXDHSI_OCCPTP_0919
+          intent2: FC_MMMXDHSI_OAGTCARECNCL_1024
+          intent3: CANCEL_CARE_FDO_MAGTMXDHSI_OTRF
+        selfServe:
+          - selfServeAttemted: ANI_SelfServe_Intercept
+            selfServeCompleted: "Y"
+          - selfServeAttemted: Payment_Arrangement
+            selfServeCompleted: "N"
+        callEndState: Transfer
+        callEndStatus: Voluntary Transfer
+        virtualQueue: FDO_GENINQ_ACT_EN
+    CallHistoryProfile:
+      type: object
+      properties:
+        repeatCallerHistory:
+          type: array
+          items:
+            $ref: '#/components/schemas/RepeatCaller'
+        callHistoryCounts:
+          $ref: '#/components/schemas/CallCounts'
+    Brand:
+      type: string
+      description: Identifies the Rogers Brand
+      example: FIDO
+      enum:
+        - ROGERS
+        - FIDO
+        - CHATR
+        - OTHER
+    YNIndicator:
+      type: string
+      example: "Y"
+      enum:
+        - "Y"
+        - "N"
+    ErrorResponse:
+      required:
+        - code
+        - reason
+      type: object
+      properties:
+        code:
+          type: string
+          description: Application related code
+        reason:
+          type: string
+          description: Text that explains the reason for error.
+        message:
+          type: string
+          description: Text that provide more details and corrective actions related
+            to the error.
+        actor:
+          type: string
+        actorService:
+          type: string
+      description: error object
+      example:
+        code: "40001"
+        reason: Record not found in IVR APP DB
+        message: No data found for Menu ID = M_1104
+        actor: IVRAPPDB
+        actorInterface: 'ivr-appsupport-exp-api, operationId: getMenuOptionsParams'
+    PhoneNumber:
+      maxLength: 10
+      minLength: 10
+      pattern: ^[0-9]+$
+      type: string
+      description: 10-digits phone number
+      example: "4167289983"
+    AccountNumber:
+      maxLength: 12
+      minLength: 9
+      pattern: ^[0-9]+$
+      type: string
+      description: 9 to 12 digits Billing Account Number
+      example: "120198272"
+  responses: {}
+  parameters:
+    ConnectionId:
+      name: connectionId
+      in: path
+      description: Connection ID in hexadecimal format
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+      example: 00870309eb9a2717
+  examples:
+    CallHistoryExample:
+      value:
+        repeatCallerHistory:
+          - menuID: M_480
+            numberOfDays: 7
+            callsThreshold: 1
+            totalCalls: 3
+            repeatCallerInd: "Y"
+          - menuID: M_510
+            numberOfDays: 3
+            callsThreshold: 1
+            totalCalls: 0
+            repeatCallerInd: "N"
+        callHistoryCounts:
+          totalCalls:
+            last1Day: 5
+            last3Days: 2
+            last7Days: 14
+            last30Days: 17
+            last90Days: 19
+          intentCalls:
+            - intent1: VA_DGTLHUB-CONTINUE_FC-WIR_072020
+              callsLast30Days: 14
+            - intent1: WIRUNBILLED-AIR_SelfServe
+              callsLast30Days: 2
+    CallHistoryRecordExample:
+      value:
+        connectionId: 00870309eb9a2717
+        callDateTime: 2020-08-07T20:08:22Z
+        dnis: "9906117601"
+        ani: "4036081943"
+        itn: "4053788290"
+        ecid: "423237971"
+        accountNumber: "787280493"
+        accountProfileType: NonMaestroOnly
+        cpdFlag: ECARE
+        lastIntent:
+          intent1: FC_MMMXDHSI_OCCPTP_0919
+          intent2: FC_MMMXDHSI_OAGTCARECNCL_1024
+          intent3: CANCEL_CARE_FDO_MAGTMXDHSI_OTRF
+        selfServe:
+          - selfServeAttemted: ANI_SelfServe_Intercept
+            selfServeCompleted: "Y"
+          - selfServeAttemted: Payment_Arrangement
+            selfServeCompleted: "N"
+        callEndState: Transfer
+        callEndStatus: Voluntary Transfer
+        virtualQueue: FDO_GENINQ_ACT_EN
+  requestBodies: {}
+  headers:
+    X-CDR:
+      required: true
+      schema:
+        type: string
+      example: 00870302558ed54a
+    X-TransactionId:
+      required: true
+      schema:
+        type: string
+      example: "1603761655497"
+    X-Duration:
+      description: duration of the transaction in milliseconds
+      schema:
+        type: integer
+      example: 1498
+  securitySchemes: {}
+  links: {}
+  callbacks: {}
